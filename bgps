@@ -170,7 +170,8 @@ _set_config() {
   fi
 
   if (( "${#configs[@]}" )) ; then
-    hash_code="$(md5sum "${configs[@]}" | awk {'print $1'} ORS="")"
+    # hash_code="$(md5sum "${configs[@]}" | awk {'print $1'} ORS="")"
+    hash_code="$(md5 -r "${configs[@]}" | awk {'print $1'} ORS="")"
   fi
 
   if [[ -n "${hash_code}" ]] && [[ "${hash_code}" != "${BGPS_CHECKSUM}" ]] ; then
